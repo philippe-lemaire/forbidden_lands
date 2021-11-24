@@ -10,7 +10,7 @@ abilities = {
     31: ("Unnaturally Beautiful", "+2 Manipulation"),
     33: ("Covered by Sores", "Infectious Touch, Virulence D6+5"),
     35: ("Feathers", "Armor Rating +2"),
-    41: ("Wings Can fly", "Movement Rating 3"),
+    41: ("Wings. Can fly", "Movement Rating 3"),
     44: ("Filled by Light", "Fear attack D6+5"),
     46: ("Covered in Vines", "Armor Rating +3"),
     51: ("Transparent", "All attacks get a –3 penalty"),
