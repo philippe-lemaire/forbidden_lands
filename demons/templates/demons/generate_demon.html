@@ -25,13 +25,20 @@
 
 <p>Armor Rating: {{ demon.armor }}</p>
 
+<p>Abilities</p>
+<ul>
+    {% for ability in demon.abilities %}
+    <li>{{ ability.0 }}: {{ ability.1 }} </li>
+    {% endfor %}
+</ul>
+
 <p>Attacks: {{demon.attacks|length}}</p>
 
 {%for attack in demon.attacks %}
 
 <p>{{attack}}</p>
-
-
 {% endfor %}
+
+
 
 {% endblock %}
