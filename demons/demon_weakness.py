@@ -41,5 +41,5 @@ move away from the sound. If unable to do so, the demon
 takes D3 damage every round.""",
     ),
     61: ("Soil", "Takes D3 damage from contact with soil."),
-    64: ("Wood", "Takes double damage from weapons made of wood"),
+    64: ("Wood", "Takes double damage from weapons made of wood."),
 }
