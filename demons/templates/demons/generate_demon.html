@@ -9,28 +9,30 @@
 <h2>Attributes </h2>
 <table style="margin-top: 20px" class="table table-striped">
     <tr>
-        <td>Strength</td>
-        <td>Agility</td>
-        <td>Wits</td>
-        <td>Empathy</td>
+        <th>Strength</th>
+        <th>Agility</th>
+        <th>Wits</th>
+        <th>Empathy</th>
+        <th>Armor rating</th>
     </tr>
     <tr>
         <td>{{ demon.strength }}</td>
         <td>{{ demon.agility }}</td>
         <td>{{ demon.wits }}</td>
         <td>{{ demon.empathy }}</td>
+        <td>{{ demon.armor }}</td>
     </tr>
 </table>
 
 <h2>Skills</h2>
 <table class="table table-striped">
     <tr>
-        <td>Scout</td>
-        <td>Sneak</td>
-        <td>Move</td>
-        <td>Lore</td>
-        <td>Insight</td>
-        <td>Manipulation</td>
+        <th>Scout</th>
+        <th>Sneak</th>
+        <th>Move</th>
+        <th>Lore</th>
+        <th>Insight</th>
+        <th>Manipulation</th>
     </tr>
     <tr>
         <td>{{ demon.skills.Scout }}</td>
@@ -42,33 +44,58 @@
     </tr>
 </table>
 
-<h2>Armor Rating: {{ demon.armor }}</h2>
-
 <h2>Abilities</h2>
-<ul>
+<table class="table table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Effect</th>
+    </tr>
     {% for ability in demon.abilities %}
-    <li>{{ ability.0 }}: {{ ability.1 }} </li>
+    <tr>
+        <td>{{ ability.0 }}</td>
+        <td>{{ ability.1 }}</td>
+    </tr>
     {% endfor %}
-
     {% for ability in demon.special_abilities %}
-    <li>{{ ability.0 }}: {{ ability.1 }} </li>
+    <tr>
+        <td>{{ ability.0 }}</td>
+        <td>{{ ability.1 }}</td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
+
+
+<h2>Weakness:</h2>
+<table class="table-striped table">
+    <tr>
+        <th>Name</th>
+        <th>Effect</th>
+    </tr>
+    <tr>
+        <td>{{ demon.weakness.0 }}</td>
+        <td>{{ demon.weakness.1 }}</td>
+    </tr>
+
+</table>
 
 
 <h2>Attacks:</h2>
-<ul>
+<table class="table table-striped">
+    <tr>
+        <th>Name</th>
+        <th>Base Dice</th>
+        <th>Damage</th>
+        <th>Reach</th>
+
+    </tr>
     {%for attack in demon.attacks %}
-    <li>{{ attack }}</li>
+    <tr>
+        <td>{{ attack.name }}</td>
+        <td>{{ attack.base_dice }}</td>
+        <td>{{ attack.dmg }}</td>
+        <td>{{ attack.reach }}</td>
+    </tr>
     {% endfor %}
-</ul>
-
-<h2>Weakness:</h2>
-<ul>
-    <li>{{ demon.weakness.0 }}: {{ demon.weakness.1 }}</li>
-</ul>
-
-
-
+</table>
 
 {% endblock %}
