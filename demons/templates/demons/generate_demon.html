@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Your demon</h1>
+<h1>{{demon.form}}</h1>
 
-<p>Form: {{demon.form}}</p>
 {% if demon.effect %}
 <p>Special effect: {{ demon.effect }}</p>
 {% endif %}
-
-<table class="table table-striped">
+<h2>Attributes </h2>
+<table style="margin-top: 20px" class="table table-striped">
     <tr>
         <td>Strength</td>
         <td>Agility</td>
@@ -23,37 +22,7 @@
     </tr>
 </table>
 
-<p>Armor Rating: {{ demon.armor }}</p>
-
-<p>Abilities</p>
-<ul>
-    {% for ability in demon.abilities %}
-    <li>{{ ability.0 }}: {{ ability.1 }} </li>
-    {% endfor %}
-</ul>
-
-<p>Special Abilities</p>
-<ul>
-    {% for ability in demon.special_abilities %}
-    <li>{{ ability.0 }}: {{ ability.1 }} </li>
-    {% endfor %}
-</ul>
-
-
-<p>Attacks:</p>
-<ul>
-    {%for attack in demon.attacks %}
-    <li>{{attack}}</li>
-    {% endfor %}
-</ul>
-
-<p>Weakness:</p>
-<ul>
-    <li>{{ demon.weakness.0 }}: {{ demon.weakness.1 }}</li>
-</ul>
-
-
-<p>Skills:</p>
+<h2>Skills</h2>
 <table class="table table-striped">
     <tr>
         <td>Scout</td>
@@ -72,5 +41,34 @@
         <td>{{ demon.skills.Manipulation }}</td>
     </tr>
 </table>
+
+<h2>Armor Rating: {{ demon.armor }}</h2>
+
+<h2>Abilities</h2>
+<ul>
+    {% for ability in demon.abilities %}
+    <li>{{ ability.0 }}: {{ ability.1 }} </li>
+    {% endfor %}
+
+    {% for ability in demon.special_abilities %}
+    <li>{{ ability.0 }}: {{ ability.1 }} </li>
+    {% endfor %}
+</ul>
+
+
+<h2>Attacks:</h2>
+<ul>
+    {%for attack in demon.attacks %}
+    <li>{{attack}}</li>
+    {% endfor %}
+</ul>
+
+<h2>Weakness:</h2>
+<ul>
+    <li>{{ demon.weakness.0 }}: {{ demon.weakness.1 }}</li>
+</ul>
+
+
+
 
 {% endblock %}
