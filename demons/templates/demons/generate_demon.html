@@ -51,4 +51,26 @@
 <ul>
     <li>{{ demon.weakness.0 }}: {{ demon.weakness.1 }}</li>
 </ul>
+
+
+<p>Skills:</p>
+<table class="table table-striped">
+    <tr>
+        <td>Scout</td>
+        <td>Sneak</td>
+        <td>Move</td>
+        <td>Lore</td>
+        <td>Insight</td>
+        <td>Manipulation</td>
+    </tr>
+    <tr>
+        <td>{{ demon.skills.Scout }}</td>
+        <td>{{ demon.skills.Sneak }}</td>
+        <td>{{ demon.skills.Move }}</td>
+        <td>{{ demon.skills.Lore }}</td>
+        <td>{{ demon.skills.Insight }}</td>
+        <td>{{ demon.skills.Manipulation }}</td>
+    </tr>
+</table>
+
 {% endblock %}

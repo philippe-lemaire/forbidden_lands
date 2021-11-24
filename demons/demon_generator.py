@@ -56,7 +56,14 @@ class Demon:
                 candidate = key
         self.weakness = weakness_table.get(candidate)
         # skills
-        self.skills = []
+        self.skills = {
+            "Scout": r.roll("d6+-1"),
+            "Sneak": r.roll("d6+-1"),
+            "Move": r.roll("d6+-1"),
+            "Lore": r.roll("d6+-1"),
+            "Insight": r.roll("d6+-1"),
+            "Manipulation": r.roll("d6+-1"),
+        }
 
     def __repr__(self):
         return f"""A {self.form} demon.
