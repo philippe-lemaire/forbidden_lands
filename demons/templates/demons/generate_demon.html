@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Your demon</h1>
+
+<p>Form: {{demon.form}}</p>
+{% if demon.effect %}
+<p>Special effect: {{ demon.effect }}</p>
+{% endif %}
+
+<table class="table table-striped">
+    <tr>
+        <td>Strength</td>
+        <td>Agility</td>
+        <td>Wits</td>
+        <td>Empathy</td>
+    </tr>
+    <tr>
+        <td>{{ demon.strength }}</td>
+        <td>{{ demon.agility }}</td>
+        <td>{{ demon.wits }}</td>
+        <td>{{ demon.empathy }}</td>
+    </tr>
+</table>
+
+<p>Armor Rating: {{ demon.armor }}</p>
+
+<p>Attacks: {{demon.attacks|length}}</p>
+
+{%for attack in demon.attacks %}
+
+<p>{{attack}}</p>
+
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,5 @@
+django
+django-dotenv
+#psycopg2-binary
+django-markdownx
+gunicorn
