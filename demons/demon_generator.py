@@ -1,6 +1,7 @@
 from roller.roller import Roller
 from demons.demon_forms import forms
 from demons.demon_abilities import abilities, double_ability
+from demons.demon_special_abilities import special_abilities, double_special_ability
 from demons.demon_attacks import roll_attacks
 
 
@@ -37,7 +38,17 @@ class Demon:
             self.abilities.extend(double_ability())
         # roll of attacks
         self.attacks = roll_attacks()
-        self.special_abitily = ""
+        # special_abilities
+        self.special_abilities = []
+        special_abilities_roll = r.roll("d66")
+        for key in special_abilities.keys():
+            if key <= special_abilities_roll:
+                candidate = key
+        if candidate < 65:
+            self.special_abilities.append(special_abilities.get(candidate))
+        else:
+            self.special_abilities.extend(double_special_ability())
+        # weakness
         self.weakness = ""
 
     def __repr__(self):

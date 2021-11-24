@@ -32,13 +32,21 @@
     {% endfor %}
 </ul>
 
-<p>Attacks: {{demon.attacks|length}}</p>
+<p>Special Abilities</p>
+<ul>
+    {% for ability in demon.special_abilities %}
+    <li>{{ ability.0 }}: {{ ability.1 }} </li>
+    {% endfor %}
+</ul>
 
-{%for attack in demon.attacks %}
 
-<p>{{attack}}</p>
-{% endfor %}
+<p>Attacks:</p>
+<ul>
+    {%for attack in demon.attacks %}
 
+    <li>{{attack}}</li>
+    {% endfor %}
+</ul>
 
 
 {% endblock %}
