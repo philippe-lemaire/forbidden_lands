@@ -43,10 +43,12 @@
 <p>Attacks:</p>
 <ul>
     {%for attack in demon.attacks %}
-
     <li>{{attack}}</li>
     {% endfor %}
 </ul>
 
-
+<p>Weakness:</p>
+<ul>
+    <li>{{ demon.weakness.0 }}: {{ demon.weakness.1 }}</li>
+</ul>
 {% endblock %}

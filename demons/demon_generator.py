@@ -3,6 +3,7 @@ from demons.demon_forms import forms
 from demons.demon_abilities import abilities, double_ability
 from demons.demon_special_abilities import special_abilities, double_special_ability
 from demons.demon_attacks import roll_attacks
+from demons.demon_weakness import weakness_table
 
 
 class Demon:
@@ -49,7 +50,13 @@ class Demon:
         else:
             self.special_abilities.extend(double_special_ability())
         # weakness
-        self.weakness = ""
+        weakness_roll = r.roll("d66")
+        for key in weakness_table.keys():
+            if key <= weakness_roll:
+                candidate = key
+        self.weakness = weakness_table.get(candidate)
+        # skills
+        self.skills = []
 
     def __repr__(self):
         return f"""A {self.form} demon.
