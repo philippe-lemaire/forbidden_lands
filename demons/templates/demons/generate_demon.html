@@ -3,10 +3,8 @@
 {% block content %}
 <h1>{{demon.form}}</h1>
 
-{% if demon.effect %}
-<p>Special effect: {{ demon.effect }}</p>
-{% endif %}
-<h2>Attributes </h2>
+
+<h2>Attributes</h2>
 <table style="margin-top: 20px" class="table table-striped">
     <tr>
         <th>Strength</th>
@@ -62,10 +60,16 @@
         <td>{{ ability.1 }}</td>
     </tr>
     {% endfor %}
+    {% if demon.effect %}
+    <tr>
+        <td>Form effect</td>
+        <td>{{ demon.effect }}</td>
+    </tr>
+    {% endif %}
 </table>
 
 
-<h2>Weakness:</h2>
+<h2>Weakness</h2>
 <table class="table-striped table">
     <tr>
         <th>Name</th>
@@ -79,7 +83,7 @@
 </table>
 
 
-<h2>Attacks:</h2>
+<h2>Attacks</h2>
 <table class="table table-striped">
     <tr>
         <th>Name</th>
