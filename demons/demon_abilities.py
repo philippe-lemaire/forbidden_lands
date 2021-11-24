@@ -11,7 +11,7 @@ abilities = {
     33: ("Covered by Sores", "Infectious Touch, Virulence D6+5"),
     35: ("Feathers", "Armor Rating +2"),
     41: ("Wings Can fly", "Movement Rating 3"),
-    44: ("Filled by Light" "Fear attack D6+5"),
+    44: ("Filled by Light", "Fear attack D6+5"),
     46: ("Covered in Vines", "Armor Rating +3"),
     51: ("Transparent", "All attacks get a –3 penalty"),
     54: ("Covered by Eyes", "Draw one extra initiative card, discard the worst one."),
@@ -27,10 +27,18 @@ def double_ability():
     first_roll = 66
     while first_roll > 55:
         first_roll = r.roll("d66")
-    first_ability = abilities.get(first_roll)
+
+    for key in abilities.keys():
+        if key <= first_roll:
+            candidate = key
+    first_ability = abilities.get(candidate)
 
     second_roll = 66
     while second_roll > 55 or second_roll == first_roll:
         second_roll = r.roll("d66")
-    second_ability = abilities.get(second_roll)
+    for key in abilities.keys():
+        if key <= second_roll:
+            candidate = key
+    second_ability = abilities.get(candidate)
+
     return first_ability, second_ability
