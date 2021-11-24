@@ -1,3 +1,1 @@
-release: python manage.py migrate
-
-web: gunicorn tchitcha.wsgi:application
+web: gunicorn forbidden_lands.wsgi:application
