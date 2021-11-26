@@ -1,6 +1,7 @@
 import random
 
 from roller.roller import Roller
+from .inn_generator import Inn
 
 size_table = {
     1: ("Outpost", (5, 20)),
@@ -121,6 +122,7 @@ class Village:
         for key in ruler_table:
             if key <= ruler_oddity_roll:
                 candidate = key
+
         oddity = ruler_table.get(candidate)[0]
         for key in ruler_table:
             if key <= ruler_type_roll:
@@ -162,6 +164,8 @@ class Village:
                     candidate = key
             self.institutions.add(institution_table.get(candidate))
 
+        self.inn = Inn()
+
     def __repr__(self):
         return f"""{self.type} with {self.inhabitants} inhabitants. 
     Built {self.build_time}, {self.age} years ago. Ruled by {self.ruler}. 
@@ -169,4 +173,5 @@ class Village:
     Their fame is {self.fame}.
     Their oddity is {self.oddity}.
     Their institutions are {self.institutions}.
+    Their in is {self.inn}.
     """
