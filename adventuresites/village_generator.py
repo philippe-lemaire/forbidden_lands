@@ -60,6 +60,29 @@ fame_table = {
     64: "Hospitality",
 }
 
+oddity_table = {
+    11: "Eccentric Clothing",
+    14: "Incomprehensible Accent",
+    16: "Smells Bad",
+    22: "Full of Flowers",
+    24: "Muddy",
+    26: "Odd Building Materials",
+    32: "Tent Village",
+    33: "Built on Steep Hill",
+    35: "Old Tower in the Middle",
+    36: "Grand Building",
+    41: "Windy",
+    43: "Inbreeding",
+    44: "Strange Eating Habits",
+    46: "Built on Marshland",
+    52: "Cut Out of a Cliff",
+    53: "Old Burial Site",
+    55: "Wandering Cattle",
+    61: "Mostly Inhabited by Women",
+    63: "Allied with Monster",
+    65: "Preparing Wedding",
+}
+
 
 class Village:
     def __init__(self):
@@ -108,9 +131,16 @@ class Village:
                 candidate = key
         self.fame = fame_table.get(candidate).lower()
 
+        oddity_roll = r.roll("d66")
+        for key in oddity_table:
+            if key <= oddity_roll:
+                candidate = key
+        self.oddity = oddity_table.get(candidate).lower()
+
     def __repr__(self):
         return f"""{self.type} with {self.inhabitants} inhabitants. 
     Built {self.build_time}, {self.age} years ago. Ruled by {self.ruler}. 
     The problem: {self.problem}.
     Their fame is {self.fame}.
+    Their oddity is {self.oddity}.
     """
