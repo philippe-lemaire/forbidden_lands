@@ -30,6 +30,36 @@ ruler_table = {
     64: ("Drunkard", "Bandit Chief"),
 }
 
+problem_table = {
+    11: "Nightwargs",
+    14: "Widespread Drunkenness",
+    21: "Power Struggle",
+    24: "Secret Cult",
+    31: "Schism",
+    34: "Undead",
+    41: "Disease",
+    44: "Sinkhole",
+    51: "Bandits",
+    54: "Terrorizing Monster",
+    61: "Slave Trade",
+    64: "Haunted by Ghoul or Ghost",
+}
+
+fame_table = {
+    11: "Excellent Wine",
+    14: "Delicious Bread",
+    21: "Craftsmanship",
+    24: "Beautiful Location",
+    31: "A Horrible Massacre",
+    34: "Decadence",
+    41: "Well–Brewed Beer",
+    44: "Hidden Riches",
+    51: "Strange Disappearances",
+    54: "Worshipping Demons",
+    61: "Suspicion of Strangers",
+    64: "Hospitality",
+}
+
 
 class Village:
     def __init__(self):
@@ -66,5 +96,21 @@ class Village:
         else:
             self.ruler = f"a {oddity.lower()} {ruler_type.lower()}"
 
+        problem_roll = r.roll("d66")
+        for key in problem_table:
+            if key <= problem_roll:
+                candidate = key
+        self.problem = problem_table.get(candidate).lower()
+
+        fame_roll = r.roll("d66")
+        for key in fame_table:
+            if key <= fame_roll:
+                candidate = key
+        self.fame = fame_table.get(candidate).lower()
+
     def __repr__(self):
-        return f"{self.type} with {self.inhabitants} inhabitants. Built {self.build_time}, {self.age} years ago. Ruled by {self.ruler}."
+        return f"""{self.type} with {self.inhabitants} inhabitants. 
+    Built {self.build_time}, {self.age} years ago. Ruled by {self.ruler}. 
+    The problem: {self.problem}.
+    Their fame is {self.fame}.
+    """
