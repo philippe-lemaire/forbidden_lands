@@ -83,6 +83,19 @@ oddity_table = {
     65: "Preparing Wedding",
 }
 
+institution_table = {
+    11: "Nothing",
+    21: "Inn",
+    31: "Mill",
+    36: "Smith",
+    44: "Forester",
+    51: "Trading Post",
+    54: "Temple",
+    56: "Militia",
+    63: "Tavern",
+    65: "Stable",
+}
+
 
 class Village:
     def __init__(self):
@@ -136,6 +149,18 @@ class Village:
             if key <= oddity_roll:
                 candidate = key
         self.oddity = oddity_table.get(candidate).lower()
+        {}
+        num_institution_dict = {"Outpost": 1, "Hamlet": 3, "Village": r.roll("d6+5")}
+
+        num_institution = num_institution_dict.get(self.type)
+        self.institutions = set()
+
+        for _ in range(num_institution):
+            institution_roll = r.roll("d66")
+            for key in institution_table:
+                if key <= institution_roll:
+                    candidate = key
+            self.institutions.add(institution_table.get(candidate))
 
     def __repr__(self):
         return f"""{self.type} with {self.inhabitants} inhabitants. 
@@ -143,4 +168,5 @@ class Village:
     The problem: {self.problem}.
     Their fame is {self.fame}.
     Their oddity is {self.oddity}.
+    Their institutions are {self.institutions}.
     """
