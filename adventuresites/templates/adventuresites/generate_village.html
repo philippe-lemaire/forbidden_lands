@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ village.type }}</h1>
+
+<p>Age: {{ village.age }}</p>
+<p>Built {{ village.build_time }}</p>
+
+<p>Inhabitants: {{ village.inhabitants }}</p>
+<p>Oddity: {{ village.oddity }}</p>
+<p>Ruler: {{ village.ruler }}</p>
+<p>Problem: {{ village.problem }}</p>
+<p>Fame: {{ village.fame }}</p>
+
+{% if village.institutions %}
+<p>Institutions</p>
+<ul>
+    {% for inst in village.institutions %}
+    <li>{{ inst }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<p>The inn</p>
+
+
+<p>Inn name: {{ village.inn.name }}</p>
+<p>Oddity: {{ village.inn.oddity }}</p>
+<p>Specialty: {{ village.inn.specialty }}</p>
+<p>Special guest: {{ village.inn.special_guest }}</p>
+
+{% endblock %}
