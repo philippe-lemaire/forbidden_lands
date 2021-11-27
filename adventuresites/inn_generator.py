@@ -1,4 +1,5 @@
 from roller.roller import Roller
+from forbidden_lands.utils import find_key
 
 inn_table = {
     11: ("Violence is in the air", "Cheap diluted beer", "Escaped criminal"),
@@ -22,42 +23,42 @@ inn_table = {
 }
 
 inn_name_table = {
-    11: ("The Third", "Lantern"),
-    12: ("The Little", "Swine"),
-    13: ("The Red", "Wheel"),
-    14: ("The Misty", "Stoop"),
-    15: ("The Bloody", "Sparrow"),
-    16: ("The Old", "Goat"),
-    21: ("The Golden", "Arrow"),
-    22: ("The Cold", "Pot"),
-    23: ("The Refreshing", "Lamb"),
-    24: ("The Good", "Maid"),
-    25: ("The Second", "Man"),
-    26: ("The Last", "Dragon"),
-    31: ("The Prancing", "Griffin"),
-    32: ("The Happy", "Boar"),
-    33: ("The Singing" "Barrel"),
-    34: ("The Rolling", "Bard"),
-    35: ("The Rumping", "Dog"),
-    36: ("The Wailing", "Horse"),
-    41: ("The Greedy", "Girl"),
-    42: ("The Round", "Wolf"),
-    43: ("The Flaming", "Bear"),
-    44: ("The Last ", "Ghost"),
-    45: ("The Silver", "Rat"),
-    46: ("The Black", "Jar"),
-    51: ("The Dead", "Mug"),
-    52: ("The Big", "Goblet"),
-    53: ("The Roaring", "Eagle"),
-    54: ("The Cheering", "Raven"),
-    55: ("The Humming", "Hammer"),
-    56: ("The Meagre", "Spike"),
-    61: ("The Fat", "Crow"),
-    62: ("The Thick", "Druid"),
-    63: ("The Round", "Knight"),
-    64: ("The Sweet", "Bandit"),
-    65: ("The Boisterous", "Wild Boar"),
-    66: ("The Grumpy", "Hunter"),
+    11: ("Third", "Lantern"),
+    12: ("Little", "Swine"),
+    13: ("Red", "Wheel"),
+    14: ("Misty", "Stoop"),
+    15: ("Bloody", "Sparrow"),
+    16: ("Old", "Goat"),
+    21: ("Golden", "Arrow"),
+    22: ("Cold", "Pot"),
+    23: ("Refreshing", "Lamb"),
+    24: ("Good", "Maid"),
+    25: ("Second", "Man"),
+    26: ("Last", "Dragon"),
+    31: ("Prancing", "Griffin"),
+    32: ("Happy", "Boar"),
+    33: ("Singing", "Barrel"),
+    34: ("Rolling", "Bard"),
+    35: ("Rumping", "Dog"),
+    36: ("Wailing", "Horse"),
+    41: ("Greedy", "Girl"),
+    42: ("Round", "Wolf"),
+    43: ("Flaming", "Bear"),
+    44: ("Last ", "Ghost"),
+    45: ("Silver", "Rat"),
+    46: ("Black", "Jar"),
+    51: ("Dead", "Mug"),
+    52: ("Big", "Goblet"),
+    53: ("Roaring", "Eagle"),
+    54: ("Cheering", "Raven"),
+    55: ("Humming", "Hammer"),
+    56: ("Meagre", "Spike"),
+    61: ("Fat", "Crow"),
+    62: ("Thick", "Druid"),
+    63: ("Round", "Knight"),
+    64: ("Sweet", "Bandit"),
+    65: ("Boisterous", "Wild Boar"),
+    66: ("Grumpy", "Hunter"),
 }
 
 
@@ -66,44 +67,30 @@ class Inn:
         r = Roller()
 
         oddity_roll = r.roll("d66")
-        for key in inn_table:
-            if key <= oddity_roll:
-                candidate = key
-        self.oddity = inn_table.get(candidate)[0]
+        key = find_key(oddity_roll, inn_table)
+        self.oddity = inn_table.get(key)[0]
 
         specialty_roll = r.roll("d66")
-        for key in inn_table:
-            if key <= specialty_roll:
-                candidate = key
-        self.specialty = inn_table.get(candidate)[1]
-
-        specialty_roll = r.roll("d66")
-        for key in inn_table:
-            if key <= specialty_roll:
-                candidate = key
-        self.specialty = inn_table.get(candidate)[1]
+        key = find_key(specialty_roll, inn_table)
+        self.specialty = inn_table.get(key)[1]
 
         special_guest_roll = r.roll("d66")
-        for key in inn_table:
-            if key <= special_guest_roll:
-                candidate = key
-        self.special_guest = inn_table.get(candidate)[2]
+        key = find_key(special_guest_roll, inn_table)
+        self.special_guest = inn_table.get(key)[2]
 
         first_roll = r.roll("d66")
         last_roll = r.roll("d66")
         name_type = r.roll("d10")
 
-        for key in inn_name_table:
-            if key <= first_roll:
-                candidate = key
-            if key <= last_roll:
-                candidate_last = key
-        first = inn_name_table.get(candidate)[0]
+        key_first = find_key(first_roll, inn_name_table)
+        key_last = find_key(last_roll, inn_name_table)
+
+        first = f"The {inn_name_table.get(key_first)[0]}"
 
         if name_type % 2 == 0:
-            last = f"and {inn_name_table.get(candidate_last)[0]}"
+            last = f"and the {inn_name_table.get(key_last)[0]}"
         else:
-            last = inn_name_table.get(candidate_last)[1]
+            last = inn_name_table.get(key_last)[1]
 
         self.name = f"{first} {last}"
 

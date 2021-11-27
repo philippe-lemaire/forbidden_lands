@@ -2,6 +2,7 @@ import random
 
 from roller.roller import Roller
 from .inn_generator import Inn
+from forbidden_lands.utils import find_key
 
 size_table = {
     1: ("Outpost", (5, 20)),
@@ -102,32 +103,24 @@ class Village:
     def __init__(self):
         r = Roller()
         size_roll = r.roll("d6")
-        for key in size_table:
-            if key <= size_roll:
-                candidate = key
-        self.type = size_table.get(candidate)[0]
-        size_range = size_table.get(candidate)[1]
+        key = find_key(size_roll, size_table)
+        self.type = size_table.get(key)[0]
+        size_range = size_table.get(key)[1]
         self.inhabitants = random.randint(*size_range)
 
         age_roll = r.roll("d66")
-        for key in age_table:
-            if key <= age_roll:
-                candidate = key
-        self.build_time = age_table.get(candidate)[0]
-        age_range = age_table.get(candidate)[1]
+        key = find_key(age_roll, age_table)
+        self.build_time = age_table.get(key)[0]
+        age_range = age_table.get(key)[1]
         self.age = random.randint(*age_range)
 
         ruler_oddity_roll = r.roll("d66")
         ruler_type_roll = r.roll("d66")
-        for key in ruler_table:
-            if key <= ruler_oddity_roll:
-                candidate = key
+        key = find_key(ruler_oddity_roll, ruler_table)
+        oddity = ruler_table.get(key)[0]
 
-        oddity = ruler_table.get(candidate)[0]
-        for key in ruler_table:
-            if key <= ruler_type_roll:
-                candidate = key
-        ruler_type = ruler_table.get(candidate)[1]
+        key = find_key(ruler_type_roll, ruler_table)
+        ruler_type = ruler_table.get(key)[1]
 
         if ruler_type == ruler_table.get(41)[1]:
             self.ruler = "no one"
@@ -135,23 +128,18 @@ class Village:
             self.ruler = f"a {oddity.lower()} {ruler_type.lower()}"
 
         problem_roll = r.roll("d66")
-        for key in problem_table:
-            if key <= problem_roll:
-                candidate = key
-        self.problem = problem_table.get(candidate).lower()
+
+        key = find_key(problem_roll, problem_table)
+        self.problem = problem_table.get(key).lower()
 
         fame_roll = r.roll("d66")
-        for key in fame_table:
-            if key <= fame_roll:
-                candidate = key
-        self.fame = fame_table.get(candidate).lower()
+        key = find_key(fame_roll, fame_table)
+        self.fame = fame_table.get(key).lower()
 
         oddity_roll = r.roll("d66")
-        for key in oddity_table:
-            if key <= oddity_roll:
-                candidate = key
-        self.oddity = oddity_table.get(candidate).lower()
-        {}
+        key = find_key(oddity_roll, oddity_table)
+        self.oddity = oddity_table.get(key).lower()
+
         num_institution_dict = {"Outpost": 1, "Hamlet": 3, "Village": r.roll("d6+5")}
 
         num_institution = num_institution_dict.get(self.type)
@@ -159,10 +147,8 @@ class Village:
 
         for _ in range(num_institution):
             institution_roll = r.roll("d66")
-            for key in institution_table:
-                if key <= institution_roll:
-                    candidate = key
-            self.institutions.add(institution_table.get(candidate))
+            key = find_key(institution_roll, institution_table)
+            self.institutions.add(institution_table.get(key))
 
         self.inn = Inn()
 
