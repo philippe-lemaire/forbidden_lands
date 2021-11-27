@@ -1,19 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ village.type }}</h1>
+<h1>Village generator</h1>
 
-<p>Age: {{ village.age }}</p>
-<p>Built {{ village.build_time }}</p>
+<p>Your reach a {{ village.type|lower }} with about {{ village.inhabitants }} souls.</p>
 
-<p>Inhabitants: {{ village.inhabitants }}</p>
-<p>Oddity: {{ village.oddity }}</p>
-<p>Ruler: {{ village.ruler }}</p>
-<p>Problem: {{ village.problem }}</p>
-<p>Fame: {{ village.fame }}</p>
+<p>The village is {{ village.age }} years old, it was built {{ village.build_time }}.</p>
+
+
+<p>There is something unusual about this place: it’s {{ village.oddity }}.</p>
+
+<p>The village's ruler is {{ village.ruler }}.</p>
+
+<p>The village is facing {{ village.problem }}.</p>
+
+<p>It’s famous for {{ village.fame }}.</p>
 
 {% if village.institutions %}
-<p>Institutions</p>
+<p>Institutions:</p>
 <ul>
     {% for inst in village.institutions %}
     <li>{{ inst }}</li>
@@ -21,12 +25,13 @@
 </ul>
 {% endif %}
 
-<p>The inn</p>
+<p>A few words about the inn:</p>
 
+<p>It's called {{ village.inn.name }}</p>
 
-<p>Inn name: {{ village.inn.name }}</p>
-<p>Oddity: {{ village.inn.oddity }}</p>
-<p>Specialty: {{ village.inn.specialty }}</p>
-<p>Special guest: {{ village.inn.special_guest }}</p>
+<p>{{ village.inn.oddity }} is what's weird about it.</p>
+
+<p>Its specialty is {{ village.inn.specialty }}.</p>
+<p>Currently, there is a {{ village.inn.special_guest }} lodging at the inn.</p>
 
 {% endblock %}
