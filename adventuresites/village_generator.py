@@ -148,7 +148,8 @@ class Village:
         for _ in range(num_institution):
             institution_roll = r.roll("d66")
             key = find_key(institution_roll, institution_table)
-            self.institutions.add(institution_table.get(key))
+            if key != 11:
+                self.institutions.add(institution_table.get(key))
 
         self.inn = Inn()
 
